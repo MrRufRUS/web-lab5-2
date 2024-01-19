@@ -1,0 +1,60 @@
+block variables
+  -
+    var img = ['gallery_1.jpg', 'gallery_2.jpg', 'gallery_3.jpg']
+block mixins
+  mixin buildGallery(images, focused)
+    - var i = 1
+    each pict in images
+      if i === focused
+        .gallery__picture.gallery__picture_focused
+          img(src=require("./images/" + pict))
+      else
+        .gallery__picture
+          img(src=require("./images/" + pict))
+      - i = i + 1
+    //.gallery__picture
+    //  img(src=require("./images/gallery_1.jpg"))
+    //.gallery__picture.gallery__picture_focused
+    //  img(src=require("./images/gallery_2.jpg"))
+    //.gallery__picture
+    //  img(src=require("./images/gallery_3.jpg"))
+
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='reset.css')
+    link(rel='stylesheet', href='style.css')
+    title &Vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy; 48
+  body
+    block header
+    include companents/header
+    main
+      section.gallery
+        +buildGallery(img, 2)
+      section.advantages
+        - i = 0
+        while i < 3
+          .advantages__element
+            .advantages__picture
+              img(src=require("./images/plus.jpg"), alt='Advantage')
+            p.advantages__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptatibus maiores, sint ex excepturi, quidem atque illum vel quaerat labore eaque ducimus laudantium dolorum, perferendis repellat vero. Quisquam, numquam cumque?
+          - i = i + 1
+      section.articles
+        .article
+          h3.article__title &Ncy;&ocy;&vcy;&acy;&yacy; &vcy;&iecy;&rcy;&scy;&icy;&yacy; &quot;&Kcy;&rcy;&iecy;&scy;&tcy;&ocy;&vcy;&quot;
+          p.article__text
+            | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis reprehenderit voluptate dolor a illum rerum, numquam repellat vero rem perferendis, recusandae, maxime temporibus ullam enim similique dolores at voluptates officiis.
+          .article__img
+            img(src=require("./images/article_1.jpg"), alt='Huge Brain')
+        .article
+          h3.article__title &Ncy;&ocy;&vcy;&ycy;&jcy; &ncy;&iecy;&jcy;&rcy;&ocy;&icy;&mcy;&pcy;&lcy;&acy;&ncy;&tcy;
+          p.article__text
+            | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis reprehenderit voluptate dolor a illum rerum, numquam repellat vero rem perferendis, recusandae, maxime temporibus ullam enim similique dolores at voluptates officiis.
+          .article__img
+            img(src=require("./images/article_2.jpg"), alt='Huge Brain')
+    block footer
+    include companents/footer
